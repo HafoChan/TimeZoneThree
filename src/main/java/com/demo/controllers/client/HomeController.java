@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.demo.DTO.CategoryDTO;
@@ -46,7 +47,6 @@ public class HomeController {
 	public String homeRedirect () {
 		return "redirect:/page/1";
 	}
-
 	@GetMapping("/page/{id}")
 	public String home(Model model, HttpSession session, @PathVariable("id") Integer id) {
 
@@ -60,7 +60,7 @@ public class HomeController {
 
 	    if (id < 1 || id > pageNumber) {
 	        // Xử lý khi id không hợp lệ
-	        return "redirect:/error"; // Hoặc chuyển hướng đến một trang lỗi khác
+	        return "home_user"; // Hoặc chuyển hướng đến một trang lỗi khác
 	    }
 
 	    List<List<ProductDTO>> listPage = new ArrayList<>();
@@ -78,7 +78,7 @@ public class HomeController {
 	    model.addAttribute("categoryDTOs", categoryDTOs);
 	    model.addAttribute("productDTOs", listPage.get(id - 1));
 
-	    return "/client/home";
+	    return "home_user";
 	}
 	
 	@GetMapping("/login")
@@ -96,7 +96,7 @@ public class HomeController {
 		model.addAttribute("categoryDTOs", categoryDTOs);
 		model.addAttribute("productDTOs", productDTOS);
 
-		return "/client/login.html";
+		return "login-user";
 	}
 	
 	@PostMapping("/login")
@@ -107,7 +107,7 @@ public class HomeController {
 
 		if (user == null){
 			model.addAttribute("error", "Username or password is invalid");
-			return "/client/login";
+			return "login-user";
 		}
 
 		if (user.getRole().getName().equals(ERole.ROLE_USER) && new BCryptPasswordEncoder().matches(userDTO.getPassword(), user.getPassword())){
@@ -116,7 +116,7 @@ public class HomeController {
 		}
 
 		model.addAttribute("error", "Username or password is invalid");
-		return "/client/login";
+		return "login-user";
 
 	}
 
@@ -135,20 +135,19 @@ public class HomeController {
 		model.addAttribute("categoryDTOs", categoryDTOs);
 		model.addAttribute("productDTOs", productDTOS);
 
-		return "/client/register";
+		return "register-user";
 	}
-
 	@PostMapping("/register")
 	public String registerPost (Model model, @ModelAttribute(name = "userDTO") UserDTO userDTO) {
 
 		userDTO.setRoleDTO((new Role(ERole.ROLE_USER)).toDTO());
-		
+		System.out.print(userDTO);
 		User user0 = userService.getUserByEmail(userDTO.getEmail());
 		User user1 = userService.getUserByUsername(userDTO.getUsername());
 		
 		if (user0 != null || user1 != null) {
 			model.addAttribute("error", "Email or username is existed in system");
-			return "/client/register";
+			return "register-user";
 		}
 		
 		userService.createUser(userDTO.toModel());

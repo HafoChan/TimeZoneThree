@@ -40,7 +40,7 @@ public class UserController {
 
 		model.addAttribute("userDTOs", userDTOs);
 
-		return "admin/user/users";
+		return "users";
 	}
 
 	@GetMapping("/add-user")
@@ -49,7 +49,7 @@ public class UserController {
 		UserDTO userDTO = new UserDTO();
 		model.addAttribute("userDTO", userDTO);
 
-		return "admin/user/add-user";
+		return "add-user";
 	}
 
 	@PostMapping("/add-user")
@@ -60,7 +60,7 @@ public class UserController {
 		
 		if (user0 != null || user1 != null) {
 			model.addAttribute("error", "Username or Email is existed in System");
-			return "/admin/user/add-user";
+			return "add-user";
 		}
 		
 		userService.createUser(userDTO.toModel());
@@ -75,7 +75,7 @@ public class UserController {
 		
 		model.addAttribute("userDTO", userDTO);
 
-		return "admin/user/edit-user";
+		return "edit-user";
 	}
 
 	@PostMapping("/edit-user/{id}")
@@ -87,7 +87,7 @@ public class UserController {
 		
 		if (user0 != null || user1 != null) {
 			model.addAttribute("error", "Username or Email is existed in System");
-			return "/admin/user/edit-user";
+			return "edit-user";
 		}
 		
 		

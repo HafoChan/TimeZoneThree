@@ -46,7 +46,7 @@ public class CartController {
 		
 		model.addAttribute("cartDTOs", cartDTOs);
 		
-		return "/admin/cart/carts";
+		return "carts";
 	}
 	
 	@GetMapping("/cart-item/{id}")
@@ -80,7 +80,7 @@ public class CartController {
 		model.addAttribute("cartDTO", cartService.getCartById(id).toDTO());
 		model.addAttribute("productDTOs", productDTOs);
 		
-		return "/admin/cart/items";
+		return "items";
 	}
 	
 	@PostMapping("/cart-item/{id}")

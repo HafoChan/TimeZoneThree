@@ -75,7 +75,7 @@ public class ProductController {
 
 	    model.addAttribute("productDTOs", listPage.get(displayIndex));
 
-	    return "/admin/product/products";
+	    return "products";
 	}
 
 
@@ -87,7 +87,7 @@ public class ProductController {
 
 		model.addAttribute("categoryDTOs", categoryDTOs);
 		model.addAttribute("productDTO", productDTO);
-		return "/admin/product/add-product";
+		return "add-product";
 	}
 
 	
@@ -124,7 +124,7 @@ public class ProductController {
 
 		model.addAttribute("categoryDTOs", categoryDTOs);
 		model.addAttribute("productDTO", product.toDTO());
-		return "/admin/product/edit-product";
+		return "edit-product";
 	}
 
 	@PostMapping("/edit-product/{id}")
@@ -173,6 +173,6 @@ public class ProductController {
 
 		model.addAttribute("productDTOs", productDTOs);
 
-		return "/admin/product/products";
+		return "products";
 	}
 }

@@ -26,18 +26,18 @@ public class AdminController {
 	
 	@GetMapping("")
 	public String adminHome(Model model) {
-		return "admin/home";
+		return "home";
 	}
 	
 	@GetMapping("/login")
 	public String adminLogin() {
-		return "admin/login";
+		return "login";
 	}
 	
 	@GetMapping("/register")
 	public String adminRegisterGet(Model model) {
 		model.addAttribute("user", new UserDTO());
-		return "admin/register";
+		return "register";
 	}
 	
 	@PostMapping("/register")
@@ -51,7 +51,7 @@ public class AdminController {
 	
 	@GetMapping("/dashboard")
 	public String adminDashboard() {
-		return "admin/dashboard";
+		return "dashboard";
 	}
 }
 

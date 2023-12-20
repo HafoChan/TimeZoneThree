@@ -74,7 +74,7 @@ public class ClientCartController {
         model.addAttribute("totalPriceOfCart", totalPrice);
         model.addAttribute("cartItemDTOs", cartItemDTOS);
 
-        return "/client/cart";
+        return "cart";
     }
     
     @GetMapping("/add-to-cart")

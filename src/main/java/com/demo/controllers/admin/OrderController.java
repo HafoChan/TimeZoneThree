@@ -57,7 +57,7 @@ public class OrderController {
 
     	model.addAttribute("orderDTOs", orderDTOs);
     	
-        return "/admin/order/orders";
+        return "orders";
     }
     
     @GetMapping("/order-item/{id}")
@@ -72,7 +72,7 @@ public class OrderController {
 		model.addAttribute("orderDTO", order.toDTO());
 		model.addAttribute("orderItemDTOs", orderItemDTOs);
 		
-		return "/admin/order/items";
+		return "items";
 	}
     
     @GetMapping("/delete-order/{id}")

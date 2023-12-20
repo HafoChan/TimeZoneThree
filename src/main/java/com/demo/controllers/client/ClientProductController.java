@@ -41,7 +41,7 @@ public class ClientProductController {
         model.addAttribute("categoryDTOs", categoryDTOs);
         model.addAttribute("productDTOs", productDTOS);
 
-        return "/client/home";
+        return "home-user";
 
     }
 
@@ -61,7 +61,7 @@ public class ClientProductController {
         model.addAttribute("categoryDTOs", categoryDTOs);
         model.addAttribute("productDTOs", productDTOS);
 
-        return "/client/product-detail";
+        return "product-detail";
 
     }
 

@@ -45,7 +45,7 @@ public class ClientCategoryController {
         model.addAttribute("categoryDTO", categoryDTO);
         model.addAttribute("productDTOs", productDTOS);
 
-        return "/client/home";
+        return "home-user";
 
     }
 

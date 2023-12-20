@@ -30,7 +30,7 @@ public class CategoryController {
 
 		model.addAttribute("categoryDTOs", categoryDTOs);
 
-		return "/admin/category/categories";
+		return "categories";
 	}
 
 	@GetMapping("/add-category")
@@ -38,7 +38,7 @@ public class CategoryController {
 		CategoryDTO categoryDTO = new CategoryDTO();
 
 		model.addAttribute("categoryDTO", categoryDTO);
-		return "/admin/category/add-category";
+		return "add-category";
 	}
 
 	@PostMapping("/add-category")
@@ -48,7 +48,7 @@ public class CategoryController {
 
 		if (category != null) {
 			model.addAttribute("error", "Category is existed in System");
-			return "/admin/category/add-category";
+			return "add-category";
 		}
 
 		categoryService.createCategory(categoryDTO.toModel());
@@ -59,7 +59,7 @@ public class CategoryController {
 	public String editCategoryGet(Model model, @PathVariable(name = "id") Long id) {
 		Category category = categoryService.getCategoryById(id);
 		model.addAttribute("categoryDTO", category.toDTO());
-		return "/admin/category/edit-category";
+		return "edit-category";
 	}
 
 	@PostMapping("/edit-category/{id}")
@@ -70,7 +70,7 @@ public class CategoryController {
 
 		if (category != null) {
 			model.addAttribute("error", "Category is existed in System");
-			return "/admin/category/edit-category";
+			return "edit-category";
 		}
 
 		categoryService.editCategory(categoryDTO.toModel(), id);

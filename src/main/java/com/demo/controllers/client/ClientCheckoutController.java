@@ -94,7 +94,7 @@ public class ClientCheckoutController {
         model.addAttribute("orderDTO", new OrderDTO());
 
     	
-        return "/client/checkout";
+        return "checkout";
     }
     
     @PostMapping("/order")
@@ -152,7 +152,7 @@ public class ClientCheckoutController {
         model.addAttribute("categoryDTOs", categoryDTOs);
         model.addAttribute("orderDTOs", orderDTOs);
 
-        return "/client/list-order";
+        return "list-order";
     }
     
     @GetMapping("/my-order/detail/{id}")
@@ -177,7 +177,7 @@ public class ClientCheckoutController {
         model.addAttribute("orderDTO", order.toDTO());
         model.addAttribute("orderItemDTOs", orderItemDTOs);
 
-        return "/client/order-detail";
+        return "order-detail";
     }
     
 }
