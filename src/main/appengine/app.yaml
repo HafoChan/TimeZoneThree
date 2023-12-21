@@ -1,2 +1,21 @@
 runtime: java17
-instance_class: F1
+instance_class: F2
+
+automatic_scaling:
+  target_throughput_utilization: 0.65
+  min_instances: 1
+  max_instances: 8
+
+logging:
+  level: info
+
+read_timeout_sec: 60
+
+handlers:
+- url: /.*
+  script: TimeZone.jar.EcommerceSiteSpringBootThymeleafApplication
+  secure: always
+
+beta_settings:
+  cloud_sql_instances: superb-app-408007:asia-southeast1:watchstorecloud
+  memcache: true
